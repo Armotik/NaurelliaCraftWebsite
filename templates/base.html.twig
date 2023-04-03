@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Site of NaurelliaCraft">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <link rel="manifest" href="{{ asset('site.webmanifest') }}">
+    <link rel="apple-touch-icon" href="{{ asset('icon.png') }}">
+    <link rel="icon" href="{{ asset('icon.png') }}">
+
+    <title>{% block title %}NaurelliaCraft{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+
+{% block header %}
+
+    <header>
+        <nav class="header-nav">
+            <ul class="nav-items">
+                <li><a href="{{ path('app_default_play') }}" data-text="PLAY">PLAY</a></li>
+                <li><a href="{{ path('app_default_wiki_rules') }}" data-text="WIKI | RULES">WIKI | RULES</a></li>
+            </ul>
+
+            <ul class="nav-items">
+                <li><a href="#" data-text="VOTE">VOTE</a></li>
+                <li><a href="{{ path('app_default_contact') }}" data-text="CONTACT">CONTACT</a></li>
+            </ul>
+
+            <ul class="nav-items">
+                <li><a href="shop.php" data-text="SHOP">SHOP</a></li>
+
+                <?php if (isset($_SESSION['username']) && $_SESSION['username'] !== "") : $user = $_SESSION['username'] ?>
+
+                <li><a href="profile.php" data-text="<?= $user ?>"><?= $user ?></a></li>
+
+
+                <?php else : ?>
+
+                <li><a href="login.php" data-text="SIGN IN">SIGN IN</a></li>
+
+                <?php endif; ?>
+
+            </ul>
+        </nav>
+    </header>
+
+{% endblock %}
+
+{% block main %}{% endblock %}
+
+{% block footer %}
+
+    <footer class="footer">
+        <ul class="footer-items">
+            <ul class="footer-items-contact">
+                <li><i class="fal fa-at"></i> direction@naurellia.com</li>
+                <li><i class="fal fa-copyright"></i> 2023 <a href="{{ path('app_default_index') }}">Naurellia</a></li>
+            </ul>
+
+            <img src="{{ asset('img/Naurellia_logoComplet-redim.png') }}" alt="Logo Naurellia" id="footer-logo">
+
+            <ul class="footer-items-extand">
+                <li><a href="#">Legales Mentions | Privacy Policy</a></li>
+                <li><a href="#">Terms and Conditions</a></li>
+                <li class="footer-contact-items">
+                    <a href=""><i class="fab fa-youtube"></i></a>
+                    <a href="https://discord.gg/64ncf5HZSQ" target="_blank"><i class="fab fa-discord"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                </li>
+            </ul>
+        </ul>
+    </footer>
+
+{% endblock %}
+
+<script src="{{ asset('js/vendor/modernizr-3.11.2.min.js') }}"></script>
+<script src="{{ asset('js/plugins.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+
+<script>
+    window.ga = function () {
+        ga.q.push(arguments)
+    };
+    ga.q = [];
+    ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto');
+    ga('set', 'anonymizeIp', true);
+    ga('set', 'transport', 'beacon');
+    ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+</html>
