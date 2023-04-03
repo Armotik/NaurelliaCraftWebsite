@@ -26,9 +26,10 @@ All this in order to make this website even better
 Date - Commit name
 --------------------
 
-03/03/2023 - Initial Commit
-03/03/2023 - Init SecurityController
-03/03/2023 - Add readme.md file
+03/04/2023 - Initial Commit
+03/04/2023 - Init SecurityController
+03/04/2023 - Add readme.md file
+03/04/2023 - Init Registration
 ```
 
 ---
@@ -38,8 +39,6 @@ Date - Commit name
 ```bash
 git clone git@github.com/Armotik/NaurelliaCraftWebsite
 cd NaurelliaCraftWebsite
-
-## Have Fun
 ```
 
 ---

@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" href="{{ asset('icon.png') }}">
     <link rel="icon" href="{{ asset('icon.png') }}">
 
-    <title>{% block title %}NaurelliaCraft{% endblock %}</title>
+    <title>NaurelliaCraft {% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -57,7 +57,7 @@
 
                 <?php else : ?>
 
-                <li><a href="login.php" data-text="SIGN IN">SIGN IN</a></li>
+                <li><a href="{{ path('app_register') }}" data-text="SIGN IN">SIGN IN</a></li>
 
                 <?php endif; ?>
 
