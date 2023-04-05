@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\UserEntity;
+use App\Entity\UsersWeb;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<UserEntity>
+ * @extends ServiceEntityRepository<UsersWeb>
  *
- * @method UserEntity|null find($id, $lockMode = null, $lockVersion = null)
- * @method UserEntity|null findOneBy(array $criteria, array $orderBy = null)
- * @method UserEntity[]    findAll()
- * @method UserEntity[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method UsersWeb|null find($id, $lockMode = null, $lockVersion = null)
+ * @method UsersWeb|null findOneBy(array $criteria, array $orderBy = null)
+ * @method UsersWeb[]    findAll()
+ * @method UsersWeb[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserEntityRepository extends ServiceEntityRepository
+class UsersWebRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, UserEntity::class);
+        parent::__construct($registry, UsersWeb::class);
     }
 
-    public function save(UserEntity $entity, bool $flush = false): void
+    public function save(UsersWeb $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class UserEntityRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(UserEntity $entity, bool $flush = false): void
+    public function remove(UsersWeb $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class UserEntityRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return UserEntity[] Returns an array of UserEntity objects
+//     * @return UsersWeb[] Returns an array of UsersWeb objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class UserEntityRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?UserEntity
+//    public function findOneBySomeField($value): ?UsersWeb
 //    {
 //        return $this->createQueryBuilder('u')
 //            ->andWhere('u.exampleField = :val')

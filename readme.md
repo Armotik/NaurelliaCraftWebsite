@@ -30,6 +30,7 @@ Date - Commit name
 03/04/2023 - Init SecurityController
 03/04/2023 - Add readme.md file
 03/04/2023 - Init Registration
+04/04/2023 - Added Dashboard, added Users Entity, added Users CRUD, removed SecurityController and Registration (moved to Users CRUD) and added UsersFixtures (for testing) 
 ```
 
 ---
@@ -56,7 +57,7 @@ cd NaurelliaCraftWebsite
 │   ├── preload.php
 │   ├── routes.yaml
 │   └── services.yaml
-├── migration
+├── migration (folder)
 ├── public
 │   ├── css
 │   │   ├── main.css
@@ -95,21 +96,29 @@ cd NaurelliaCraftWebsite
 │   └── tile-wide.png
 ├── src
 │   ├── Controller
+│   │   ├── Admin
+│   │   │   ├── DashboardController.php
+│   │   │   └── UsersWebCrudController.php
 │   │   ├── DefaultController.php
 │   │   └── Security.php
+│   ├── DataFixtures
+│   │   └── UsersWebFixtures.php
 │   ├── Entity
+│   │   └── UsersWeb.php
 │   ├── Form
 │   │   └── ContactType.php
 │   ├── Repository
+│   │   └── UsersWebRepository.php
+│   ├── Repository
 │   └── Kernel.php
 ├── templates
+│   ├── admin
+│   │   └── dashboard.html.twig
 │   ├── default
 │   │   ├── index.html.twig
 │   │   ├── play.html.twig
 │   │   ├── wiki_rules.html.twig
 │   │   └── contact.html.twig
-│   ├── security
-│   │   └── login.html.twig
 │   └── base.html.twig
 ├── var (folder)
 ├── vendor (folder)
@@ -163,8 +172,12 @@ This folder contains the public files of the project. It's a Boilerplate from HT
 This folder contains the source files of the project (Symfony).
 
 - Controller : Contains the controllers of the project
+  - Admin : Contains the admin controllers of the project
+    - DashboardController.php : Contains the dashboard controller of the project
+    - UsersWebCrudController.php : Contains the users web crud controller of the project 
   - DefaultController.php : Contains the default controller of the project
-  - Security.php : Contains the security controller of the project
+- DataFixtures : Contains the data fixtures of the project
+  - UsersWebFixtures.php : Contains the users web fixtures of the project
 - Entity : Contains the entities of the project
 - Form : Contains the forms of the project
   - ContactType.php : Contains the contact form of the project
@@ -180,8 +193,8 @@ This folder contains the templates files of the project (Twig).
   - play.html.twig : Contains the play template of the project
   - wiki_rules.html.twig : Contains the wiki_rules template of the project
   - contact.html.twig : Contains the contact template of the project
-- security : Contains the security templates of the project
-  - login.html.twig : Contains the login template of the project
+- admin : Contains the admin templates of the project
+  - dashboard.html.twig : Contains the dashboard template of the project
 - base.html.twig : Contains the base template of the project
 
 ### var
