@@ -31,6 +31,7 @@ Date - Commit name
 03/04/2023 - Add readme.md file
 03/04/2023 - Init Registration
 04/04/2023 - Added Dashboard, added Users Entity, added Users CRUD, removed SecurityController and Registration (moved to Users CRUD) and added UsersFixtures (for testing) 
+04/04/2023 - Added 2 Entities : UsersIG and InfractionsIG with CRUD controller for them
 ```
 
 ---
@@ -98,16 +99,22 @@ cd NaurelliaCraftWebsite
 │   ├── Controller
 │   │   ├── Admin
 │   │   │   ├── DashboardController.php
+│   │   │   ├── InfractionsIGCrudController.php
+│   │   │   ├── UsersIGCrudController.php
 │   │   │   └── UsersWebCrudController.php
 │   │   ├── DefaultController.php
 │   │   └── Security.php
 │   ├── DataFixtures
 │   │   └── UsersWebFixtures.php
 │   ├── Entity
+│   │   ├── InfractionsIG.php
+│   │   ├── UsersIG.php
 │   │   └── UsersWeb.php
 │   ├── Form
 │   │   └── ContactType.php
 │   ├── Repository
+│   │   ├── InfractionsIGRepository.php
+│   │   ├── UsersIGRepository.php
 │   │   └── UsersWebRepository.php
 │   ├── Repository
 │   └── Kernel.php

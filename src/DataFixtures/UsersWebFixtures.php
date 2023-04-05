@@ -2,9 +2,11 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\UsersIG;
 use App\Entity\UsersWeb;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Validator\Constraints\Uuid;
 
 class UsersWebFixtures extends Fixture
 {
@@ -12,11 +14,22 @@ class UsersWebFixtures extends Fixture
     {
 
         for ($i = 0; $i < 10; $i++) {
-            $user = new UsersWeb();
-            $user->setUsername('user' . $i);
-            $user->setMail('user' . $i . '@example.com');
-            $user->setPassword('password' . $i);
-            $manager->persist($user);
+            $userWeb = new UsersWeb();
+            $userIG = new UsersIG();
+
+            $userWeb->setUsername('userWeb' . $i);
+            $userWeb->setMail('userWeb' . $i . '@example.com');
+            $userWeb->setPassword('password' . $i);
+
+            $userIG->setUuid(Uuid::V4_RANDOM);
+            $userIG->setUsername("userIG" . $i);
+            $userIG->setRanks([]);
+            $userIG->setIsLinked(false);
+            $userIG->setIsOnline(false);
+            $userIG->setJoinedAt(new \DateTime);
+
+            $manager->persist($userWeb);
+            $manager->persist($userIG);
         }
 
         $manager->flush();

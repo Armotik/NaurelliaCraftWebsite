@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\InfractionsIG;
+use App\Entity\UsersIG;
 use App\Entity\UsersWeb;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -42,6 +44,8 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('User', 'fas fa-user', UsersWeb::class);
+        yield MenuItem::linkToCrud('UsersWeb', 'fas fa-user', UsersWeb::class);
+        yield MenuItem::linkToCrud('UsersIG', 'fas fa-user', UsersIG::class);
+        yield MenuItem::linkToCrud('InfractionsIG', 'fas fa-user', InfractionsIG::class);
     }
 }

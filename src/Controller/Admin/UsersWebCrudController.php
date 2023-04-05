@@ -20,9 +20,9 @@ class UsersWebCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-            ->setEntityLabelInPlural('Users')
-            ->setEntityLabelInSingular('User')
-            ->setPageTitle("index","NaurelliaCraft | Administration - Users");
+            ->setEntityLabelInPlural('Web - Users')
+            ->setEntityLabelInSingular('Web - User')
+            ->setPageTitle("index","NaurelliaCraft | Administration - Web Users");
     }
 
 

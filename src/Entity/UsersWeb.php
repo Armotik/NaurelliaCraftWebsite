@@ -33,7 +33,7 @@ class UsersWeb
     public function __construct()
     {
         //guid type
-        $this->uuid = \Symfony\Component\Uid\Uuid::v4() ;
+        $this->uuid = \Symfony\Component\Validator\Constraints\Uuid::V4_RANDOM ;
         $this->createdAt = new \DateTime();
     }
 
