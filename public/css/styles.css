@@ -556,8 +556,8 @@ section {
 }
 
 .account_informations_items li img {
-  width: 50%;
-  height: 50%;
+  width: 25%;
+  height: auto;
 }
 
 .account_informations_items_column form label {
@@ -576,6 +576,27 @@ section {
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 8px;
+}
+
+.account_informations_items_column form input {
+  max-width: 100%;
+}
+
+.account_informations_items_column form input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.account_informations_items_column form input::before {
+  content: 'Select a file';
+  display: inline-block;
+  background: rgb(2, 0, 36) linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(186, 157, 0, 1) 50%, rgba(1, 1, 15, 1) 100%);
+  color: #f3f3f3;
+  border-radius: 8px;
+  padding: 12px 20px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
 }
 
 .account_informations_items_column li button {

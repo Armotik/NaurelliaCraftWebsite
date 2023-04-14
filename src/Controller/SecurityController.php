@@ -3,16 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\FileFormType;
 use App\Form\NewPasswordFormType;
 use App\Repository\UserRepository;
 use DateTime;
 use IntlDateFormatter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class SecurityController extends AbstractController
 {
@@ -21,7 +24,7 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-             return $this->redirectToRoute('app_account', ['account' => $this->getUser()->getUserIdentifier()]);
+            return $this->redirectToRoute('app_account', ['account' => $this->getUser()->getUserIdentifier()]);
         }
 
         // get the login error if there is one
@@ -39,7 +42,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/{account}', name: 'app_account')]
-    public function account(User $user, Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
+    public function account(User $user, Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, SluggerInterface $slugger): Response
     {
 
         if (!$this->getUser()) {
@@ -75,6 +78,38 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_logout');
         }
 
+        $fileform = $this->createForm(FileFormType::class);
+        $fileform->handleRequest($request);
+
+        if ($fileform->isSubmitted() && $fileform->isValid()) {
+            $file = $fileform->get('file')->getData();
+
+            if ($file) {
+
+                $newFilename = 'skin-' . $this->getUser()->getUserIdentifier() . '.' . $file->guessExtension();
+
+                try {
+                    $file->move(
+                        $this->getParameter('skin_directory'),
+                        $newFilename
+                    );
+
+                    $user->setSkinURL($newFilename);
+                    $userRepository->createQueryBuilder('u')
+                        ->update()
+                        ->set('u.skinURL', ':skinURL')
+                        ->where('u.id = :id')
+                        ->setParameter('skinURL', $user->getSkinURL())
+                        ->setParameter('id', $user->getId())
+                        ->getQuery()
+                        ->execute();
+
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+            }
+        }
+
         $timestamp = $user->getCreatedAt()->getTimestamp();
         //Todo change the date format in the database to just put the timestamp
 
@@ -83,6 +118,8 @@ class SecurityController extends AbstractController
         $formattedDate = $formatter->format($dateTime);
         $formattedDate .= ' - ' . $dateTime->format('H:i');
 
-        return $this->render('default/account.html.twig', ["date" => $formattedDate, 'form' => $form->createView()]);
+        $file_exists = file_exists("uploads/skins/skin-" . $this->getUser()->getUserIdentifier() . ".png");
+
+        return $this->render('default/account.html.twig', ["date" => $formattedDate, 'form' => $form->createView(), 'fileform' => $fileform->createView(), 'file_exists' => $file_exists]);
     }
 }

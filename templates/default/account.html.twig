@@ -2,6 +2,8 @@
 
 {% block title %}| {{ app.user.username }}{% endblock %}
 
+{% set linkFile = app.user.username %}
+
 {% block main %}
 
     <main>
@@ -52,8 +54,23 @@
                             <ul class="rules_items_expand  account_informations_items account_informations_items_column">
                                 <li>
                                     <h4>Skin</h4>
-                                    <p>Not Available</p>
-                                    <img src="#" alt="Player Skin">
+
+                                    {% if file_exists %}
+
+                                        <img src="{{ asset('uploads/skins/skin-' ~ app.user.username ~ '.png') }}"
+                                             alt="{{ 'uploads/skins/skin-' ~ app.user.username ~ '.jpg' }}">
+
+                                    {% endif %}
+
+                                    <form action="{{ path('app_account', { 'account': app.user.username}) }}"
+                                          method="post" enctype="multipart/form-data">
+                                        {{ form_start(fileform) }}
+                                        {{ form_row(fileform.file, {
+                                            label: 'Upload a skin',
+                                        }) }}
+                                        <button type="submit" class="btn">Upload</button>
+                                        {{ form_end(fileform) }}
+                                    </form>
                                 </li>
                             </ul>
                         </nav>

@@ -34,6 +34,7 @@ Date - Commit name
 04/04/2023 - Added 2 Entities : UsersIG and InfractionsIG with CRUD controller for them
 14/04/2023 - Deleting project content
 14/04/2023 - Cleaned up the code, reset everything to the initial commit and started again but with a better structure
+14/04/2023 - Added a file upload system for the users (skin) and modified the User entity to add the skin path
 ```
 
 ---
@@ -114,6 +115,7 @@ cd NaurelliaCraftWebsite
 │   ├── Form
 │   │   ├── ContactType.php
 │   │   ├── NewPasswordFormType.php
+│   │   ├── FileFormType.php
 │   │   └── RegistrationFormType.php
 │   ├── Repository
 │   │   └── UserRepository.php
@@ -173,6 +175,7 @@ This folder contains the public files of the project. It's a Boilerplate from HT
 - fonts : Contains the fonts files of the project.
 - img : Contains the images files of the project.
 - js : Contains the javascript files of the project.
+- uploads : Contains the uploads files of the project.
 - .editorconfig : Contains the configuration of the editor.
 - .htaccess : Contains the configuration of the server.
 - 404.html : Contains the 404 page.
@@ -205,6 +208,7 @@ This folder contains the source files of the project (Symfony).
 - Form : Contains the forms of the project
   - ContactType.php : Contains the contact form of the project
   - NewPasswordFormType.php : Contains the new password form of the project
+  - FileFormType.php : Contains the file form of the project
   - RegistrationFormType.php : Contains the registration form of the project
 - Repository : Contains the repositories of the project
     - UserRepository.php : Contains the user repository of the project

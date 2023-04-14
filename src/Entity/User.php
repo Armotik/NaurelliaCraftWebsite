@@ -48,6 +48,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $skinURL = null;
+
     public function __construct()
     {
         $this->code = new Ulid();
@@ -182,6 +185,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getSkinURL(): ?string
+    {
+        return $this->skinURL;
+    }
+
+    public function setSkinURL(?string $skinURL): self
+    {
+        $this->skinURL = $skinURL;
 
         return $this;
     }
