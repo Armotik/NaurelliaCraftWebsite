@@ -32,6 +32,7 @@ Date - Commit name
 03/04/2023 - Init Registration
 04/04/2023 - Added Dashboard, added Users Entity, added Users CRUD, removed SecurityController and Registration (moved to Users CRUD) and added UsersFixtures (for testing) 
 04/04/2023 - Added 2 Entities : UsersIG and InfractionsIG with CRUD controller for them
+14/04/2023 - Deleting project content
 14/04/2023 - Cleaned up the code, reset everything to the initial commit and started again but with a better structure
 ```
 
@@ -40,7 +41,7 @@ Date - Commit name
 ### <ins>Installation : </ins>
 
 ```bash
-git clone git@github.com/Armotik/NaurelliaCraftWebsite
+git clone git@github.com:Armotik/NaurelliaCraftWebsite
 cd NaurelliaCraftWebsite
 ```
 
