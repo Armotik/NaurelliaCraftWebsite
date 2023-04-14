@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}| Register{% endblock %}
+
+{% block main %}
+
+    <main>
+        <section>
+
+            <article class="register_desc  login_desc">
+                <h2>
+                    Register !
+                </h2>
+            </article>
+
+            <article class="register_error">
+                {% for flash_error in app.flashes('verify_email_error') %}
+                    <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                {% endfor %}
+            </article>
+
+            <article class="register_form  login_form">
+
+                {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.mail) }}
+                {{ form_row(registrationForm.username) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Password'
+                }) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+
+                <p>Already have an account ? Then  <a href="{{ path('app_login') }}" class="underline">Login</a></p>
+
+                <button type="submit" class="btn">Register</button>
+                {{ form_end(registrationForm) }}
+
+            </article>
+        </section>
+    </main>
+{% endblock %}

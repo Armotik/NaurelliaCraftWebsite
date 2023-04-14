@@ -1,0 +1,360 @@
+@media (max-height: 950px) and (max-width: 550px) {
+
+  .footer {
+    margin-top: 5%;
+    height: auto;
+  }
+
+  footer ul {
+    padding: 0;
+  }
+
+  footer li {
+    font-size: 1rem;
+  }
+
+  .footer-items {
+    flex-flow: column;
+  }
+
+  .footer-items ul {
+    width: 90%;
+  }
+
+  section {
+    padding: 1%;
+  }
+
+  section h2 {
+    font-size: 1.5rem;
+  }
+
+  section li {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+
+  .header-txt h1 {
+    font-size: 2.5rem;
+  }
+
+  .header-txt h2 {
+    font-size: 2rem;
+  }
+
+  .header-txt {
+    padding: 5%;
+  }
+
+  .header-items {
+    flex-flow: column;
+  }
+
+  .header-items li {
+    margin: 10px;
+  }
+
+  .index-footer-items {
+    font-size: .7rem;
+  }
+
+  .nav-items a {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .play-items {
+    margin-left: 2%;
+  }
+
+  .contact-desc h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .contact-desc h3 {
+    font-size: 1.5rem;
+  }
+
+  .contact-items {
+    padding: 2%;
+    margin: 1% 0;
+  }
+
+  .contact-items-expand {
+    margin-bottom: 10px;
+    padding: 0;
+  }
+
+  .contact-items-expand li:first-of-type {
+    padding: 0;
+  }
+
+  .contact-items-expand li h3 {
+    font-size: 1.5rem;
+  }
+
+  .contact-items-expand li h4 {
+    font-size: 1rem;
+  }
+
+  .contact-items-expand li h5 {
+    font-size: 1rem;
+  }
+
+  .contact-items-expand i {
+    font-size: 1.5rem;
+  }
+
+  .rules_items {
+    padding: 0;
+  }
+
+  .rules_items li nav label span {
+    font-size: 1.5rem;
+  }
+
+  .contact-items-expand li h4 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-height: 550px) and (max-width: 950px) {
+
+  .footer {
+    height: auto;
+  }
+
+  footer ul {
+    padding: 0;
+  }
+
+  footer li {
+    font-size: 1rem;
+  }
+
+  .footer-items {
+    flex-flow: column;
+  }
+
+  .footer-items ul {
+    width: 90%;
+  }
+
+  section {
+    padding: 1%;
+  }
+
+  section h2 {
+    font-size: 1.5rem;
+  }
+
+  section li {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+
+  .header-items a {
+    font-size: 1rem;
+  }
+
+  .header-txt h1 {
+    font-size: 2rem;
+  }
+
+  .header-txt h2 {
+    font-size: 1.5rem;
+  }
+
+  .index-footer-items {
+    font-size: .5rem;
+  }
+
+  .header-txt {
+    padding: 1%;
+  }
+
+  .nav-items a {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .play-items {
+    margin-left: 2%;
+  }
+
+  .contact-desc h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .contact-desc h3 {
+    font-size: 1rem;
+  }
+
+  .contact-items {
+    padding: 2%;
+    margin: 1% 0;
+  }
+
+  .contact-items-expand {
+    margin-bottom: 10px;
+    padding: 0;
+  }
+
+  .contact-items-expand li:first-of-type {
+    padding: 0;
+  }
+
+  .contact-items-expand li h3 {
+    font-size: 1.5rem;
+  }
+
+  .contact-items-expand li h4 {
+    font-size: 1rem;
+  }
+
+  .contact-items-expand li h5 {
+    font-size: 1rem;
+  }
+
+  .contact-items-expand i {
+    font-size: 1.5rem;
+  }
+
+  .rules_items {
+    padding: 0;
+  }
+
+  .rules_items li nav label span {
+    font-size: 1.5rem;
+  }
+
+  .contact-items-expand li h4 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-height: 700px) and (max-width: 400px) {
+
+  .footer {
+    height: auto;
+  }
+
+  footer ul {
+    padding: 0;
+  }
+
+  footer li {
+    font-size: 1rem;
+  }
+
+  .footer-items {
+    flex-flow: column;
+  }
+
+  .footer-items ul {
+    width: 90%;
+  }
+
+  section {
+    padding: 1%;
+  }
+
+  section h2 {
+    font-size: 1.5rem;
+  }
+
+  section li {
+    font-size: 1rem;
+    line-height: 2rem;
+  }
+
+  .header-items a {
+    font-size: 1rem;
+  }
+
+  .header-txt {
+    padding: 1%;
+  }
+
+  .header-txt h1 {
+    font-size: 2rem;
+  }
+
+  .header-txt h2 {
+    font-size: 1.5rem;
+  }
+
+  .index-footer-items {
+    font-size: .5rem;
+  }
+
+  .header-items {
+    flex-flow: column;
+  }
+
+  .header-items li {
+    margin: 10px;
+  }
+
+  .nav-items a {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .play-items {
+    margin-left: 2%;
+  }
+
+  .contact-desc h2 {
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
+
+  .contact-desc h3 {
+    font-size: .85rem;
+  }
+
+  .contact-items {
+    padding: 2%;
+    margin: 1% 0;
+  }
+
+  .contact-items-expand {
+    margin-bottom: 10px;
+    padding: 0;
+  }
+
+  .contact-items-expand li:first-of-type {
+    padding: 0;
+  }
+
+  .contact-items-expand li h3 {
+    font-size: 1.25rem;
+  }
+
+  .contact-items-expand li h4 {
+    font-size: .85rem;
+  }
+
+  .contact-items-expand li h5 {
+    font-size: .85rem;
+  }
+
+  .contact-items-expand i {
+    font-size: 1.25rem;
+  }
+
+  .rules_items {
+    padding: 0;
+  }
+
+  .rules_items li nav label span {
+    font-size: 1.5rem;
+  }
+
+  .contact-items-expand li h4 {
+    font-size: 1.5rem;
+  }
+}

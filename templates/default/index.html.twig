@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}{% endblock %}
+
+{% block main %}
+<body id="index">
+
+<main>
+    <div class="header-txt">
+        <h1>NAURELLIA CRAFT</h1>
+        <h2>Earth-RP</h2>
+
+        <ul class="header-items">
+            <li><a href="{{ path('app_default_play') }}" data-text="PLAY">PLAY</a></li>
+            <li><a href="{{ path('app_default_wiki_rules') }}" data-text="WIKI">WIKI</a></li>
+            <li><a href="#" data-text="VOTE">VOTE</a></li>
+            <li><a href="{{ path('app_default_contact') }}" data-text="CONTACT">CONTACT</a></li>
+            <li><a href="#" data-text="SHOP">SHOP</a></li>
+        </ul>
+    </div>
+
+</main>
+
+{% endblock %}
+
+{% block footer %}
+
+<footer class="index-footer">
+
+    <ul class="index-footer-items">
+        <li><a href="#">Legals Mentions | Privacy Policy</a></li>
+        <li>&copy; 2023 <a href="{{ path('app_default_index') }}">Naurellia</a></li>
+        <li><a href="#">Terms and Conditions</a></li>
+    </ul>
+
+</footer>
+</body>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}| {{ app.user.username }}{% endblock %}
+
+{% block main %}
+
+    <main>
+        <section>
+
+            <article class="account_desc">
+
+                <h2>Welcome {{ app.user.username }}</h2>
+
+                <h3><a href="{{ path('app_logout') }}" class="underline">Logout !</a></h3>
+
+                {% if "ROLE_ADMIN" in app.user.roles %}
+
+                    <h4><a href="{{ path('admin') }}" class="colored  underline"> Admin Panel</a></h4>
+
+                {% endif %}
+
+            </article>
+
+            <article class="account_informations">
+
+                <ul class="rules_items">
+                    <li>
+                        <nav>
+                            <label for="account__global"><span>Global Informations</span></label>
+                            <input type="checkbox" id="account__global" class="rules_item">
+
+                            <ul class="rules_items_expand  account_informations_items">
+                                <li>
+                                    <h4>Username</h4>
+                                    <p>{{ app.user.username }}</p>
+                                </li>
+                                <li>
+                                    <h4>Mail</h4>
+                                    <p>{{ app.user.mail }}</p>
+                                </li>
+                                <li>
+                                    <h4>Created At (French Format)</h4>
+                                    <p>{{ date }}</p>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <nav>
+                            <label for="account__skin"><span>Skin</span></label>
+                            <input type="checkbox" id="account__skin" class="rules_item">
+
+                            <ul class="rules_items_expand  account_informations_items account_informations_items_column">
+                                <li>
+                                    <h4>Skin</h4>
+                                    <p>Not Available</p>
+                                    <img src="#" alt="Player Skin">
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+
+                    <li>
+                        <nav>
+                            <label for="account__connexions"><span>Connexions</span></label>
+                            <input type="checkbox" id="account__connexions" class="rules_item">
+
+                            <ul class="rules_items_expand  account_informations_items">
+                                <li>
+                                    <h4>Discord</h4>
+                                    {% if app.user.isLinked %}
+                                        <p>You're linked !</p>
+                                    {% else %}
+                                        <p>You're not linked !</p>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    <h4>Minecraft</h4>
+                                    {% if app.user.isLinked %}
+                                        <p>You're linked !</p>
+                                    {% else %}
+                                        <p>You're not linked !</p>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+
+                    <li>
+                        <nav>
+                            <label for="account__security"><span>Security</span></label>
+                            <input type="checkbox" id="account__security" class="rules_item">
+
+                            <ul class="rules_items_expand  account_informations_items_column">
+                                <li>
+                                    <h4>Change Password</h4>
+                                    {{ form_start(form) }}
+                                    {{ form_row(form.plainPassword, {
+                                        label: 'New Password',
+                                    }) }}
+                                    {{ form_row(form.confirmPassword, {
+                                        label: 'Confirm Password',
+                                    }) }}
+
+                                    <button type="submit" class="btn">Register</button>
+                                    {{ form_end(form) }}
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+                </ul>
+            </article>
+
+        </section>
+    </main>
+
+{% endblock %}

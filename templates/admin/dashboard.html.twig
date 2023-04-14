@@ -1,0 +1,9 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_title %} NaurelliaCraft | Admin Panel {% endblock %}
+
+{% block page_content %}
+
+    <a href="{{ path('app_account', {"account": app.user.username}) }}">Back to your account page</a>
+
+{% endblock %}
