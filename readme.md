@@ -35,6 +35,7 @@ Date - Commit name
 14/04/2023 - Deleting project content
 14/04/2023 - Cleaned up the code, reset everything to the initial commit and started again but with a better structure
 14/04/2023 - Added a file upload system for the users (skin) and modified the User entity to add the skin path
+15/04/2023 - Added 2 new entities : UserIG and InfractionsIG also updated the User entity to handle french date format and started update the SecurityController to handle the new entities
 ```
 
 ---
@@ -111,6 +112,8 @@ cd NaurelliaCraftWebsite
 │   ├── DataFixtures
 │   │   └── AppFixtures.php
 │   ├── Entity
+│   │   ├── UserIG.php
+│   │   ├── InfractionIG.php
 │   │   └── User.php
 │   ├── Form
 │   │   ├── ContactType.php
@@ -118,6 +121,8 @@ cd NaurelliaCraftWebsite
 │   │   ├── FileFormType.php
 │   │   └── RegistrationFormType.php
 │   ├── Repository
+│   │   ├── UserIGRepository.php
+│   │   ├── InfractionIGRepository.php
 │   │   └── UserRepository.php
 │   ├── Security
 │   │   ├── EmailVerifier.php
@@ -205,6 +210,8 @@ This folder contains the source files of the project (Symfony).
   - AppFixtures.php : Contains the fixtures of the project
 - Entity : Contains the entities of the project*
     - User.php : Contains the user entity of the project
+    - UserIG.php : Contains the user IG (Minecraft) entity of the project
+    - InfractionIG.php : Contains the infraction IG entity for the user IG entity of the project
 - Form : Contains the forms of the project
   - ContactType.php : Contains the contact form of the project
   - NewPasswordFormType.php : Contains the new password form of the project
@@ -212,6 +219,8 @@ This folder contains the source files of the project (Symfony).
   - RegistrationFormType.php : Contains the registration form of the project
 - Repository : Contains the repositories of the project
     - UserRepository.php : Contains the user repository of the project
+    - UserIGRepository.php : Contains the user IG repository of the project
+    - InfractionIGRepository.php : Contains the infraction IG repository of the project
 - Security : Contains the security files of the project
     - EmailVerifier.php : Contains the email verifier of the project
     - LoginFormAuthenticator.php : Contains the login authenticator of the project
@@ -256,6 +265,6 @@ This file contains the environment variables of the project (database, etc.).
 
 ---
 
-Copyright (c) 2021 Armotik - All rights reserved - Last update : 14/04/2023
+Copyright (c) 2021 Armotik - All rights reserved - Last update : 15/04/2023
 
 La Rochelle Université - France

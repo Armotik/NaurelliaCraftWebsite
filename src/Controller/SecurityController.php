@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\UserIG;
 use App\Form\FileFormType;
 use App\Form\NewPasswordFormType;
+use App\Repository\InfractionsRepository;
+use App\Repository\UserIGRepository;
 use App\Repository\UserRepository;
 use DateTime;
 use IntlDateFormatter;
@@ -42,7 +45,7 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/{account}', name: 'app_account')]
-    public function account(User $user, Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, SluggerInterface $slugger): Response
+    public function account(User $user, Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher, InfractionsRepository $infractionsRepository, UserIGRepository $userIGRepository): Response
     {
 
         if (!$this->getUser()) {
@@ -111,14 +114,24 @@ class SecurityController extends AbstractController
         }
 
         $timestamp = $user->getCreatedAt()->getTimestamp();
-        //Todo change the date format in the database to just put the timestamp
 
         $dateTime = DateTime::createFromFormat('U', $timestamp);
+        $dateTime->setTimezone(new \DateTimeZone('Europe/Paris'));
         $formatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
         $formattedDate = $formatter->format($dateTime);
-        $formattedDate .= ' - ' . $dateTime->format('H:i');
 
         $file_exists = file_exists("uploads/skins/skin-" . $this->getUser()->getUserIdentifier() . ".png");
+
+        print_r($user);
+
+        if ($user->isIsLinked()) {
+
+            $userIG = $userIGRepository->findOneBy(['username' => $user->getUsername()]);
+
+            $infractions = $infractionsRepository->findBy(['targetUUID' => $userIG->getId()]);
+
+            return $this->render('default/account.html.twig', ["date" => $formattedDate, 'form' => $form->createView(), 'fileform' => $fileform->createView(), 'file_exists' => $file_exists, 'infractions' => "test"]);
+        }
 
         return $this->render('default/account.html.twig', ["date" => $formattedDate, 'form' => $form->createView(), 'fileform' => $fileform->createView(), 'file_exists' => $file_exists]);
     }

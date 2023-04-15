@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -31,7 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    private ?string $password = null;
+    private string $password = '';
 
     #[ORM\Column(length: 255)]
     private ?string $mail = null;
@@ -39,8 +40,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::GUID)]
     private ?string $code = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column]
     private ?bool $isLinked = null;
@@ -51,11 +50,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $skinURL = null;
 
+    #[ORM\Column(type: Types::DATE_IMMUTABLE, nullable: false)]
+    private ?\DateTimeImmutable $createdAt = null;
+
     public function __construct()
     {
         $this->code = new Ulid();
-        $this->createdAt = new \DateTime();
         $this->isLinked = false;
+
+        $date = new \DateTimeImmutable();
+        $date->setTimezone(new \DateTimeZone('Europe/Paris'));
+        $this->createdAt = $date;
     }
 
 
@@ -153,18 +158,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
     public function isIsLinked(): ?bool
     {
         return $this->isLinked;
@@ -197,6 +190,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSkinURL(?string $skinURL): self
     {
         $this->skinURL = $skinURL;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

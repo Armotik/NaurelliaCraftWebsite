@@ -76,6 +76,23 @@
                         </nav>
                     </li>
 
+                    <nav>
+                        <label for="account__sanctions"><span>Sanctions</span></label>
+                        <input type="checkbox" id="account__sanctions" class="rules_item">
+
+                        <ul class="rules_items_expand  account_informations_items">
+                            <li>
+                                <h4>Sanctions</h4>
+
+                                {% if infractions is defined %}
+                                    <p>{{ infractions }}</p>
+                                {% else %}
+                                    <p>No Infractions</p>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </nav>
+
                     <li>
                         <nav>
                             <label for="account__connexions"><span>Connexions</span></label>
