@@ -20,11 +20,20 @@ use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
  */
 class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
+
+    /**
+     * UserRepository constructor.
+     * @param ManagerRegistry $registry The registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
     }
 
+    /**
+     * @param User $entity The entity
+     * @param bool $flush  The flush
+     */
     public function save(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -34,6 +43,10 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         }
     }
 
+    /**
+     * @param User $entity The entity
+     * @param bool $flush  The flush
+     */
     public function remove(User $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -73,6 +86,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 //    }
 
     /**
+     * Get one user by username or email
+     * @param string $value The value to search
      * @throws NonUniqueResultException
      */
     public function loadUserByIdentifier($value): ?User

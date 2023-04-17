@@ -618,6 +618,24 @@ section {
   border: 1px solid rgb(196, 166, 0);
 }
 
+.infraction_unit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px 0;
+  border-bottom: 1px solid rgb(196, 166, 0);
+}
+
+.infraction_unit:last-of-type {
+  border-bottom: none;
+}
+
+.infraction_component {
+  border-bottom: none!important;
+  text-align: center;
+}
+
 /*** FOOTER ***/
 .footer {
   background: rgb(2, 0, 36);

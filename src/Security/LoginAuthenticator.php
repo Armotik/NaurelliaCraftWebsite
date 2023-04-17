@@ -21,10 +21,19 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
+    /**
+     * LoginAuthenticator constructor.
+     * @param UrlGeneratorInterface $urlGenerator The url generator
+     */
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
     }
 
+    /**
+     * Authenticates a user based on the credentials in the request.
+     * @param Request $request The request
+     * @return Passport The passport to use for authentication
+     */
     public function authenticate(Request $request): Passport
     {
         $username = $request->request->get('username', '');
@@ -40,16 +49,29 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
+    /**
+     * Called when authentication executed successfully.
+     * @param Request $request The request
+     * @param TokenInterface $token The token
+     * @param string $firewallName The firewall name
+     * @return Response|null The response
+     */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        // If the user was redirected to the login page, redirect them back to the page they were on
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
+        // Otherwise, redirect them to the account page
         return new RedirectResponse($this->urlGenerator->generate('app_account', ['account'=> $request->request->get('username', '')]));
     }
 
+    /**
+     * Returns the URL to the login page.
+     * @param Request $request The request
+     * @return string The URL to the login page
+     */
     protected function getLoginUrl(Request $request): string
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);

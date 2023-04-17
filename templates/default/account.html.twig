@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}| {{ app.user.username }}{% endblock %}
+{% block title %}| {{ user.username }}{% endblock %}
 
-{% set linkFile = app.user.username %}
+{% set i = 0 %}
 
 {% block main %}
 
@@ -11,11 +11,12 @@
 
             <article class="account_desc">
 
-                <h2>Welcome {{ app.user.username }}</h2>
+                <h2>Welcome {{ user.username }}</h2>
+
 
                 <h3><a href="{{ path('app_logout') }}" class="underline">Logout !</a></h3>
 
-                {% if "ROLE_ADMIN" in app.user.roles %}
+                {% if "ROLE_ADMIN" in user.roles %}
 
                     <h4><a href="{{ path('admin') }}" class="colored  underline"> Admin Panel</a></h4>
 
@@ -34,11 +35,13 @@
                             <ul class="rules_items_expand  account_informations_items">
                                 <li>
                                     <h4>Username</h4>
-                                    <p>{{ app.user.username }}</p>
+
+                                    <p>{{ user.username }}</p>
+
                                 </li>
                                 <li>
                                     <h4>Mail</h4>
-                                    <p>{{ app.user.mail }}</p>
+                                    <p>{{ user.mail }}</p>
                                 </li>
                                 <li>
                                     <h4>Created At (French Format)</h4>
@@ -57,12 +60,12 @@
 
                                     {% if file_exists %}
 
-                                        <img src="{{ asset('uploads/skins/skin-' ~ app.user.username ~ '.png') }}"
-                                             alt="{{ 'uploads/skins/skin-' ~ app.user.username ~ '.jpg' }}">
+                                        <img src="{{ asset('uploads/skins/skin-' ~ user.username ~ '.png') }}"
+                                             alt="{{ 'uploads/skins/skin-' ~ user.username ~ '.jpg' }}">
 
                                     {% endif %}
 
-                                    <form action="{{ path('app_account', { 'account': app.user.username}) }}"
+                                    <form action="{{ path('app_account', { 'account': user.username}) }}"
                                           method="post" enctype="multipart/form-data">
                                         {{ form_start(fileform) }}
                                         {{ form_row(fileform.file, {
@@ -80,12 +83,33 @@
                         <label for="account__sanctions"><span>Sanctions</span></label>
                         <input type="checkbox" id="account__sanctions" class="rules_item">
 
-                        <ul class="rules_items_expand  account_informations_items">
+                        <ul class="rules_items_expand  account_informations_items_infractions">
                             <li>
                                 <h4>Sanctions</h4>
 
                                 {% if infractions is defined %}
-                                    <p>{{ infractions }}</p>
+
+                                    {% for infraction in infractions %}
+                                        <ul class="infraction_unit">
+
+                                            {% if infraction.status %}
+
+                                                {% set i = i + 1 %}
+
+                                                <li class="infraction_component">{{ i }}</li>
+                                                <li class="infraction_component">{{ infraction.type }}</li>
+                                                <li class="infraction_component">{{ infraction.reason }}</li>
+                                                <li class="infraction_component">{{ infraction.date.format('d/m/y') }}</li>
+
+                                                {% if infraction.duration is not null %}
+                                                    <li class="infraction_component">{{ infraction.duration }}</li>
+                                                {% endif %}
+
+                                            {% endif %}
+
+                                        </ul>
+                                    {% endfor %}
+
                                 {% else %}
                                     <p>No Infractions</p>
                                 {% endif %}
@@ -100,8 +124,12 @@
 
                             <ul class="rules_items_expand  account_informations_items">
                                 <li>
+                                    <h4>Link Code</h4>
+                                    <p>{{ user.code }}</p>
+                                </li>
+                                <li>
                                     <h4>Discord</h4>
-                                    {% if app.user.isLinked %}
+                                    {% if user.isLinked %}
                                         <p>You're linked !</p>
                                     {% else %}
                                         <p>You're not linked !</p>
@@ -109,7 +137,7 @@
                                 </li>
                                 <li>
                                     <h4>Minecraft</h4>
-                                    {% if app.user.isLinked %}
+                                    {% if user.isLinked %}
                                         <p>You're linked !</p>
                                     {% else %}
                                         <p>You're not linked !</p>

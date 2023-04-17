@@ -16,11 +16,19 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class UserIGRepository extends ServiceEntityRepository
 {
+    /**
+     * UserIGRepository constructor.
+     * @param ManagerRegistry $registry The registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, UserIG::class);
     }
 
+    /**
+     * @param UserIG $entity The entity
+     * @param bool $flush Flush the entity manager
+     */
     public function save(UserIG $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -30,6 +38,10 @@ class UserIGRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @param UserIG $entity The entity
+     * @param bool $flush Flush the entity manager
+     */
     public function remove(UserIG $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

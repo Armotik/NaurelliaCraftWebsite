@@ -2,22 +2,25 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\User;
+use App\Entity\Infractions;
+
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use Doctrine\DBAL\Types\FloatType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class UserCrudController extends AbstractCrudController
+class InfractionsCrudController extends AbstractCrudController
 {
     /**
      * @return string The fully qualified class name of the entity managed by this CRUD controller.
      */
     public static function getEntityFqcn(): string
     {
-        return User::class;
+        return Infractions::class;
     }
 
     /**
@@ -27,10 +30,9 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-
             ->renderContentMaximized()
-            ->setEntityLabelInSingular('User')
-            ->setEntityLabelInPlural('Users')
+            ->setEntityLabelInSingular('Infraction')
+            ->setEntityLabelInPlural('Infractions')
             ->setEntityPermission('ROLE_ADMIN')
             ->setPageTitle('index', 'NaurelliaCraft | Admin Panel - %entity_label_plural%')
             ->setPaginatorPageSize(30)
@@ -44,13 +46,17 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new("code")->setDisabled(true),
-            TextField::new('username'),
-            TextField::new('mail'),
-            DateField::new('createdAt'),
-            ArrayField::new('roles'),
-            BooleanField::new('isLinked'),
-            BooleanField::new('isVerified'),
+            IdField::new('id', 'ID')->setDisabled(),
+            IdField::new('targetUUID.username', 'Target'),
+            IdField::new('staffUUID.username', 'Staff'),
+            TextField::new('type', 'Type'),
+            TextField::new('reason', 'Reason'),
+            NumberField::new('duration', "Duration")->setCustomOption(FloatType::class, [
+                'scale' => 0,
+            ]),
+            DateField::new('date', 'Date'),
+            DateField::new('end_date', 'End Date'),
+            BooleanField::new('status', 'Status')
         ];
     }
 }

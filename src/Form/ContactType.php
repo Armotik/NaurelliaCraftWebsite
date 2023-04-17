@@ -12,6 +12,12 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContactType extends AbstractType
 {
+    /**
+     * Build the form
+     * @param FormBuilderInterface $builder The form builder
+     * @param array $options The options
+     * @return void
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -22,6 +28,11 @@ class ContactType extends AbstractType
         ;
     }
 
+    /**
+     * Configure the options
+     * @param OptionsResolver $resolver The options resolver
+     * @return void
+     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

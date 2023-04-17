@@ -13,18 +13,33 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
+    /**
+     * Display home page
+     * @Route("/", name="app_default_index")
+     * @return Response A response instance with a render template : default/index.html.twig
+     */
     #[Route('/', name: 'app_default_index')]
     public function index(): Response
     {
         return $this->render('default/index.html.twig');
     }
 
+    /**
+     * Display play page
+     * @Route("/play", name="app_default_play")
+     * @return Response A response instance with a render template : default/play.html.twig
+     */
     #[Route('/play', name: 'app_default_play')]
     public function play(): Response
     {
         return $this->render('default/play.html.twig');
     }
 
+    /**
+     * Display wiki page
+     * @Route("/wiki", name="app_default_wiki")
+     * @return Response A response instance with a render template : default/wiki.html.twig
+     */
     #[Route('/wiki_rules', name: 'app_default_wiki_rules')]
     public function wiki_rules(): Response
     {
@@ -32,23 +47,34 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @throws TransportExceptionInterface
+     * Display contact page
+     * @Route("/contact", name="app_default_contact")
+     * @return Response A response instance with a render template : default/contact.html.twig
+     * @throws TransportExceptionInterface if the email cannot be sent
      */
     #[Route('/contact', name: 'app_default_contact')]
     public function contact(Request $request, MailerInterface $mailer): Response
     {
+        // Create form
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
+
+        // If form is submitted and valid
         if ($form->isSubmitted() && $form->isValid()) :
             $this->sendEmail($form->getData(),$mailer);
             return $this->redirect($request->getUri());
         endif;
+
+        // Render template
         return $this->render('default/contact.html.twig', ['form_contact' => $form]);
 
     }
 
     /**
-     * @throws TransportExceptionInterface
+     * Send email to support and to the user
+     * @param $data
+     * @param MailerInterface $mailer
+     * @throws TransportExceptionInterface if the email cannot be sent
      */
     private function sendEmail($data, MailerInterface $mailer){
         $email = new Email();

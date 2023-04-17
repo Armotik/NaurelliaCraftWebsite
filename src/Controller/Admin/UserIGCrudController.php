@@ -2,22 +2,25 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\User;
+use App\Entity\UserIG;
+use Doctrine\DBAL\Types\FloatType;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class UserCrudController extends AbstractCrudController
+class UserIGCrudController extends AbstractCrudController
 {
     /**
      * @return string The fully qualified class name of the entity managed by this CRUD controller.
      */
     public static function getEntityFqcn(): string
     {
-        return User::class;
+        return UserIG::class;
     }
 
     /**
@@ -27,14 +30,13 @@ class UserCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
-
             ->renderContentMaximized()
-            ->setEntityLabelInSingular('User')
-            ->setEntityLabelInPlural('Users')
+            ->setEntityLabelInSingular('Infraction')
+            ->setEntityLabelInPlural('Infractions')
             ->setEntityPermission('ROLE_ADMIN')
             ->setPageTitle('index', 'NaurelliaCraft | Admin Panel - %entity_label_plural%')
             ->setPaginatorPageSize(30)
-        ;
+            ;
     }
 
     /**
@@ -44,13 +46,13 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new("code")->setDisabled(true),
-            TextField::new('username'),
-            TextField::new('mail'),
-            DateField::new('createdAt'),
-            ArrayField::new('roles'),
-            BooleanField::new('isLinked'),
-            BooleanField::new('isVerified'),
+            IdField::new('uuid', 'UUID')->setDisabled(),
+            TextField::new('username', 'Username'),
+            DateField::new('first_join_at', 'First Join Date')->setDisabled(),
+            DateField::new('last_join_at', 'Last Join Date')->setDisabled(),
+            BooleanField::new('isOnline', 'Is Online'),
+            BooleanField::new('isOp', 'Is OP')->setDisabled(),
+            ArrayField::new('ranks', 'Ranks'),
         ];
     }
 }

@@ -36,6 +36,7 @@ Date - Commit name
 14/04/2023 - Cleaned up the code, reset everything to the initial commit and started again but with a better structure
 14/04/2023 - Added a file upload system for the users (skin) and modified the User entity to add the skin path
 15/04/2023 - Added 2 new entities : UserIG and InfractionsIG also updated the User entity to handle french date format and started update the SecurityController to handle the new entities
+17/04/2023 - Updated the SecurityController to handle the new entities, added CRUD controller for the new entities, the account page can now display player's infractions when its linked.Added PHPDoc for all the project.
 ```
 
 ---
@@ -105,6 +106,8 @@ cd NaurelliaCraftWebsite
 │   ├── Controller
 │   │   ├── Admin
 │   │   │   ├── DashboardController.php
+│   │   │   ├── InfractionsCrudController.php
+│   │   │   ├── UserIGCrudController.php
 │   │   │   └── UserCrudController.php
 │   │   ├── DefaultController.php
 │   │   ├── SecurityController.php
@@ -202,6 +205,8 @@ This folder contains the source files of the project (Symfony).
 - Controller : Contains the controllers of the project
   - Admin : Contains the admin controllers of the project
     - DashboardController.php : Contains the dashboard controller of the project
+    - InfractionsCrudController.php : Contains the infractions crud controller of the project
+    - UserIGCrudController.php : Contains the user IG crud controller of the project
     - UserCrudController.php : Contains the user crud controller of the project 
   - SecurityController.php : Contains the security controller of the project
   - RegistrationController.php : Contains the registration controller of the project
@@ -265,6 +270,6 @@ This file contains the environment variables of the project (database, etc.).
 
 ---
 
-Copyright (c) 2021 Armotik - All rights reserved - Last update : 15/04/2023
+Copyright (c) 2021 Armotik - All rights reserved - Last update : 17/04/2023
 
 La Rochelle Université - France

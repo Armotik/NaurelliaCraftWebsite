@@ -16,11 +16,20 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class InfractionsRepository extends ServiceEntityRepository
 {
+
+    /**
+     * InfractionsRepository constructor.
+     * @param ManagerRegistry $registry The registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Infractions::class);
     }
 
+    /**
+     * @param Infractions $entity The entity
+     * @param bool $flush Whether to flush or not
+     */
     public function save(Infractions $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
@@ -30,6 +39,10 @@ class InfractionsRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @param Infractions $entity The entity
+     * @param bool $flush Whether to flush or not
+     */
     public function remove(Infractions $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

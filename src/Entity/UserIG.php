@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserIGRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -23,10 +24,10 @@ class UserIG
     private ?string $username = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $firstJoinAt = null;
+    private ?DateTimeImmutable $firstJoinAt = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $lastJoinAt = null;
+    private ?DateTimeImmutable $lastJoinAt = null;
 
     #[ORM\Column]
     private ?bool $isOnline = null;
@@ -40,9 +41,12 @@ class UserIG
     #[ORM\OneToMany(mappedBy: 'targetUUID', targetEntity: Infractions::class)]
     private Collection $infractions;
 
+    /**
+     * UserIG constructor.
+     */
     public function __construct()
     {
-        $date = new \DateTimeImmutable();
+        $date = new DateTimeImmutable();
         $date->setTimezone(new \DateTimeZone('Europe/Paris'));
         $this->firstJoinAt = $date;
 
@@ -55,16 +59,29 @@ class UserIG
         $this->infractions = new ArrayCollection();
     }
 
+    /**
+     * Get the value of id
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * Get the value of uuid
+     * @return string|null
+     */
     public function getUuid(): ?string
     {
         return $this->uuid;
     }
 
+    /**
+     * Set the value of uuid
+     * @param string $uuid
+     * @return self The UserIG
+     */
     public function setUuid(string $uuid): self
     {
         $this->uuid = $uuid;
@@ -72,11 +89,20 @@ class UserIG
         return $this;
     }
 
+    /**
+     * Get the value of username
+     * @return string|null
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
+    /**
+     * Set the value of username
+     * @param string $username
+     * @return self The UserIG
+     */
     public function setUsername(string $username): self
     {
         $this->username = $username;
@@ -84,35 +110,62 @@ class UserIG
         return $this;
     }
 
-    public function getFirstJoinAt(): ?\DateTimeImmutable
+    /**
+     * Get the value of firstJoinAt
+     * @return DateTimeImmutable|null
+     */
+    public function getFirstJoinAt(): ?DateTimeImmutable
     {
         return $this->firstJoinAt;
     }
 
-    public function setFirstJoinAt(\DateTimeImmutable $firstJoinAt): self
+    /**
+     * Set the value of firstJoinAt
+     * @param DateTimeImmutable $firstJoinAt
+     * @return self The UserIG
+     */
+    public function setFirstJoinAt(DateTimeImmutable $firstJoinAt): self
     {
         $this->firstJoinAt = $firstJoinAt;
 
         return $this;
     }
 
-    public function getLastJoinAt(): ?\DateTimeImmutable
+    /**
+     * Get the value of lastJoinAt
+     * @return DateTimeImmutable|null
+     */
+    public function getLastJoinAt(): ?DateTimeImmutable
     {
         return $this->lastJoinAt;
     }
 
-    public function setLastJoinAt(\DateTimeImmutable $lastJoinAt): self
+    /**
+     * Set the value of lastJoinAt
+     * @param DateTimeImmutable $lastJoinAt
+     * @return self The UserIG
+     */
+    public function setLastJoinAt(DateTimeImmutable $lastJoinAt): self
     {
         $this->lastJoinAt = $lastJoinAt;
 
         return $this;
     }
 
+    /**
+     * Get the value of isOnline
+     * @return bool|null
+     */
     public function isIsOnline(): ?bool
     {
         return $this->isOnline;
     }
 
+    /**
+     * Set the value of isOnline
+     * @param bool $isOnline
+     * @return self The UserIG
+     */
     public function setIsOnline(bool $isOnline): self
     {
         $this->isOnline = $isOnline;
@@ -120,11 +173,20 @@ class UserIG
         return $this;
     }
 
+    /**
+     * Get the value of ranks
+     * @return array The ranks
+     */
     public function getRanks(): array
     {
         return $this->ranks;
     }
 
+    /**
+     * Set the value of ranks
+     * @param array $ranks The ranks
+     * @return self The UserIG
+     */
     public function setRanks(array $ranks): self
     {
         $this->ranks = $ranks;
@@ -132,11 +194,20 @@ class UserIG
         return $this;
     }
 
+    /**
+     * Get the value of isOp
+     * @return bool|null The isOp value
+     */
     public function isIsOp(): ?bool
     {
         return $this->isOp;
     }
 
+    /**
+     * Set the value of isOp
+     * @param bool $isOp The isOp
+     * @return self The UserIG
+     */
     public function setIsOp(bool $isOp): self
     {
         $this->isOp = $isOp;
@@ -145,6 +216,7 @@ class UserIG
     }
 
     /**
+     * Get the value of infractions collection
      * @return Collection<int, Infractions>
      */
     public function getInfractions(): Collection
@@ -152,6 +224,11 @@ class UserIG
         return $this->infractions;
     }
 
+    /**
+     * Add an infraction to the infractions collection
+     * @param Infractions $infraction The infraction to add
+     * @return $this The UserIG
+     */
     public function addInfraction(Infractions $infraction): self
     {
         if (!$this->infractions->contains($infraction)) {
@@ -162,6 +239,11 @@ class UserIG
         return $this;
     }
 
+    /**
+     * Remove an infraction from the infractions collection
+     * @param Infractions $infraction The infraction to remove
+     * @return $this The UserIG
+     */
     public function removeInfraction(Infractions $infraction): self
     {
         if ($this->infractions->removeElement($infraction)) {
