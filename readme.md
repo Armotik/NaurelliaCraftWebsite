@@ -37,6 +37,7 @@ Date - Commit name
 14/04/2023 - Added a file upload system for the users (skin) and modified the User entity to add the skin path
 15/04/2023 - Added 2 new entities : UserIG and InfractionsIG also updated the User entity to handle french date format and started update the SecurityController to handle the new entities
 17/04/2023 - Updated the SecurityController to handle the new entities, added CRUD controller for the new entities, the account page can now display player's infractions when its linked.Added PHPDoc for all the project.
+17/04/2023 - Modified the readme.md file
 ```
 
 ---
@@ -44,8 +45,12 @@ Date - Commit name
 ### <ins>Installation : </ins>
 
 ```bash
-git clone git@github.com:Armotik/NaurelliaCraftWebsite
+git clone git@github.com:Armotik/NaurelliaCraftWebsite.git
 cd NaurelliaCraftWebsite
+
+cd NaurelliaCraftWebsite
+composer install
+npm run build # or npm run watch
 ```
 
 ---
@@ -269,6 +274,8 @@ This file contains the environment variables of the project (database, etc.).
 - **Armotik** - *Initial work* - [Armotik] 
 
 ---
+
+https://github.com/Armotik/NaurelliaCraftWebsite
 
 Copyright (c) 2021 Armotik - All rights reserved - Last update : 17/04/2023
 
