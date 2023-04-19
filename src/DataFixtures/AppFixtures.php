@@ -29,8 +29,15 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
+        /*
+         *
+         * Shop items fixtures
+         *
+         */
+
         // Create 1 shop item (Hero Rank)
         $heroRank = new ShopItem();
+        $heroRank->setId(1);
         $heroRank->setDesignation("Hero");
         $heroRank->setPrice(5.00);
         $heroRank->setReference("NC_RK001");
@@ -54,6 +61,7 @@ class AppFixtures extends Fixture
 
         // Create 1 shop item (Legend Rank)
         $legendRank = new ShopItem();
+        $legendRank->setId(2);
         $legendRank->setDesignation("Legend");
         $legendRank->setPrice(15.00);
         $legendRank->setReference("NC_RK002");
@@ -81,6 +89,7 @@ class AppFixtures extends Fixture
 
         // Create 1 shop item (Premium Rank)
         $premiumRank = new ShopItem();
+        $premiumRank->setId(3);
         $premiumRank->setDesignation("Premium");
         $premiumRank->setPrice(50.00);
         $premiumRank->setReference("NC_RK003");
@@ -111,6 +120,7 @@ class AppFixtures extends Fixture
 
         // Create 1 shop item (Royal Rank)
         $royalRank = new ShopItem();
+        $royalRank->setId(4);
         $royalRank->setDesignation("Royal");
         $royalRank->setPrice(5.00);
         $royalRank->setReference("NC_RK004");
@@ -142,6 +152,68 @@ class AppFixtures extends Fixture
         ]);
 
         $manager->persist($royalRank);
+
+        // Create 1 shop item (Gold x1000)
+        $gold1 = new ShopItem();
+        $gold1->setId(101);
+        $gold1->setDesignation("Gold x1000");
+        $gold1->setPrice(10.00);
+        $gold1->setReference("NC_GD001");
+        $gold1->setQuantity(null);
+        $gold1->setDescription("The \"Gold x1000\" item in our NaurelliaCraft store offers you 1000 gold coins to spend in game for cosmetics.");
+        $gold1->setAdvantages([
+            "1000 gold coins"
+        ]);
+
+        $manager->persist($gold1);
+
+        // Create 1 shop item (Gold 2500)
+        $gold2 = new ShopItem();
+        $gold2->setId(102);
+        $gold2->setDesignation("Gold x2500");
+        $gold2->setPrice(25.00);
+        $gold2->setReference("NC_GD002");
+        $gold2->setQuantity(null);
+        $gold2->setDescription("The \"Gold x2500\" item in our NaurelliaCraft store offers you 2000 gold coins to spend in game for cosmetics.");
+        $gold2->setAdvantages([
+            "2500 gold coins"
+        ]);
+
+        $manager->persist($gold2);
+
+        // Create 1 shop item (Gold x5000)
+        $gold3 = new ShopItem();
+        $gold3->setId(103);
+        $gold3->setDesignation("Gold x5000");
+        $gold3->setPrice(45.00);
+        $gold3->setReference("NC_GD003");
+        $gold3->setQuantity(null);
+        $gold3->setDescription("The \"Gold x5000\" item in our NaurelliaCraft store offers you 5000 gold coins to spend in game for cosmetics.");
+        $gold3->setAdvantages([
+            "5000 gold coins"
+        ]);
+
+        $manager->persist($gold3);
+
+        // Create 1 shop item (Gold x10000)
+        $gold4 = new ShopItem();
+        $gold4->setId(104);
+        $gold4->setDesignation("Gold x10000");
+        $gold4->setPrice(80.00);
+        $gold4->setReference("NC_GD004");
+        $gold4->setQuantity(null);
+        $gold4->setDescription("The \"Gold x10000\" item in our NaurelliaCraft store offers you 10000 gold coins to spend in game for cosmetics.");
+        $gold4->setAdvantages([
+            "10000 gold coins"
+        ]);
+
+        $manager->persist($gold4);
+
+        /*
+         *
+         * Users and UserIG fixtures
+         *
+         */
 
         // Create a Admin user
         $user = new User();

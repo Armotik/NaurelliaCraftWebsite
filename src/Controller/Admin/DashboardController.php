@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Infractions;
+use App\Entity\ShopItem;
 use App\Entity\User;
 use App\Entity\UserIG;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -56,7 +57,8 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Users', 'fas fa-user', User::class);
-        yield MenuItem::linkToCrud('In Game Users', 'fas fa-user', UserIG::class);
-        yield MenuItem::linkToCrud('In Game Infractions', 'fas fa-user', Infractions::class);
+        yield MenuItem::linkToCrud('In Game Users', 'fas fa-user-shield', UserIG::class);
+        yield MenuItem::linkToCrud('In Game Infractions', 'fas fa-skull-crossbones', Infractions::class);
+        yield MenuItem::linkToCrud('Shop Items', 'fas fa-shopping-cart', ShopItem::class);
     }
 }

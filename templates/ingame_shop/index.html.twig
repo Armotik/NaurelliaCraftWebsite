@@ -14,17 +14,17 @@
             </p>
         </section>
 
-        <section id="shop_ranks">
+        <section id="shop_ranks" class="shop_page">
 
             <h2>RANKS</h2>
 
-            <ul class="shop_ranks_items">
+            <ul class="shop_items  shop_ranks_items">
 
                 {% for item in shopItems %}
 
                     {% if item.reference starts with 'NC_RK' %}
 
-                        <li class="shop_ranks_item">
+                        <li class="shop_item  shop_ranks_item">
                             <h4>{{ item.designation }}</h4>
                             <ul class="shop_rank_item_benefit">
 
@@ -35,9 +35,12 @@
                                     {% endfor %}
                             </ul>
 
-                            <div class="shop_ranks_item_buy">
-                                <a href="{{ path('app_ingame_shop_item', {'id': item.id}) }}"><i
-                                            class="fas fa-shopping-cart"></i><span>Buy</span></a>
+                            <div class="shop_items_buy">
+                                <a href="{{ path('app_ingame_shop_item', {'id': item.id}) }}">
+                                    <span>{{ item.price }} €</span>
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span>Buy</span>
+                                </a>
                             </div>
                         </li>
 
@@ -45,6 +48,38 @@
 
                 {% endfor %}
             </ul>
+        </section>
+
+        <section id="shop_gold" class="shop_page">
+
+                <h2>GOLD</h2>
+
+                <ul class="shop_items  shop_gold_items">
+
+                    {% for item in shopItems %}
+
+                        {% if item.reference starts with 'NC_GD' %}
+
+                            <li class="shop_item  shop_gold_item">
+                                <h4>{{ item.designation }}</h4>
+                                <ul class="shop_gold_item_benefit">
+
+                                    <img src="{{ asset('img/gold_' ~ item.reference ~ '.png') }}" alt="{{ item.designation }}">
+                                </ul>
+
+                                <div class="shop_items_buy">
+                                    <a href="{{ path('app_ingame_shop_item', {'id': item.id}) }}">
+                                        <span>{{ item.price }} €</span>
+                                        <i class="fas fa-shopping-cart"></i>
+                                        <span>Buy</span>
+                                    </a>
+                                </div>
+                            </li>
+
+                        {% endif %}
+
+                    {% endfor %}
+                </ul>
         </section>
     </main>
 

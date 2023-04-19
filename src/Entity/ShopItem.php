@@ -48,6 +48,13 @@ class ShopItem
         $this->userIGs = new ArrayCollection();
     }
 
+    /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
 
     public function getId(): ?int
     {

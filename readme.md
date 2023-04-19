@@ -43,6 +43,7 @@ Date - Commit name
 17/04/2023 - Updated the SecurityController to handle the new entities, added CRUD controller for the new entities, the account page can now display player's infractions when its linked.Added PHPDoc for all the project.
 17/04/2023 - Modified the readme.md file
 19/04/2023 - Added a new Entity : ShopItem, added 2 new Controllers: ShopItemController and ApiController, added a new page to display the shop items and added a new page to display the shop items in JSON format
+20/04/2023 - Update the Shop Page by adding new proctucts, added CRUD controller for the ShopItem entity and resolved the bugs due to the modification on the old entities in their CRUD controllers (UserIG, InfractionsIG)
 ```
 
 ---
@@ -118,6 +119,7 @@ npm run build # or npm run watch
 │   ├── Controller
 │   │   ├── Admin
 │   │   │   ├── DashboardController.php
+│   │   │   ├── ShopItemCrudController.php
 │   │   │   ├── InfractionsCrudController.php
 │   │   │   ├── UserIGCrudController.php
 │   │   │   └── UserCrudController.php
@@ -229,6 +231,7 @@ This folder contains the source files of the project (Symfony).
   - Admin : Contains the admin controllers of the project
     - DashboardController.php : Contains the dashboard controller of the project
     - InfractionsCrudController.php : Contains the infractions crud controller of the project
+    - ShopItemCrudController.php : Contains the shop item crud controller of the project
     - UserIGCrudController.php : Contains the user IG crud controller of the project
     - UserCrudController.php : Contains the user crud controller of the project 
   - SecurityController.php : Contains the security controller of the project
@@ -309,6 +312,6 @@ This file contains the environment variables of the project (database, etc.).
 
 https://github.com/Armotik/NaurelliaCraftWebsite
 
-Copyright (c) 2021 Armotik - All rights reserved - Last update : 19/04/2023
+Copyright (c) 2021 Armotik - All rights reserved - Last update : 20/04/2023
 
 La Rochelle Université - France

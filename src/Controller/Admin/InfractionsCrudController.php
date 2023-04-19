@@ -7,6 +7,7 @@ use App\Entity\Infractions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use Doctrine\DBAL\Types\FloatType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -47,8 +48,8 @@ class InfractionsCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id', 'ID')->setDisabled(),
-            IdField::new('targetUUID.username', 'Target'),
-            IdField::new('staffUUID.username', 'Staff'),
+            TextField::new('targetUUID.username', 'Target Username'),
+            TextField::new('staffUUID.username', 'Staff Username'),
             TextField::new('type', 'Type'),
             TextField::new('reason', 'Reason'),
             NumberField::new('duration', "Duration")->setCustomOption(FloatType::class, [

@@ -47,6 +47,33 @@
                                     <h4>Created At (French Format)</h4>
                                     <p>{{ date }}</p>
                                 </li>
+
+                                {% if user.isLinked %}
+
+                                    {% if userIG.ranks is not empty %}
+
+                                        <ul>
+
+                                            {% for rank in userIG.ranks %}
+
+                                                <li>
+                                                    <h4>Rank</h4>
+                                                    <p>{{ rank }}</p>
+                                                </li>
+
+                                            {% endfor %}
+
+                                        </ul>
+
+                                    {% else %}
+
+                                        <li>
+                                            <h4>Rank</h4>
+                                            <p>No ranks</p>
+                                        </li>
+
+                                    {% endif %}
+                                {% endif %}
                             </ul>
                         </nav>
 

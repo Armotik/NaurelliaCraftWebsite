@@ -398,12 +398,16 @@ section {
   font-size: 2.5rem;
 }
 
-#shop_ranks h2 {
+.shop_page {
+  padding-top: 0;
+}
+
+.shop_page h2 {
   text-align: center;
   font-size: 3rem;
 }
 
-.shop_ranks_items {
+.shop_items {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -413,21 +417,22 @@ section {
   border-bottom: 1px solid rgb(196, 166, 0);
 }
 
-.shop_ranks_item {
+.shop_item {
   width: 25%;
   border-left: 1px solid black;
+  border-radius: 8px;
 }
 
-.shop_ranks_item:first-of-type {
+.shop_item:first-of-type {
   border-left: none;
 }
 
-.shop_ranks_item:hover {
+.shop_item:hover {
   background-color: #FFF;
   transition: .5s;
 }
 
-.shop_ranks_item h4 {
+.shop_item h4 {
   text-align: center;
   font-size: 2rem;
   font-family: _Bold, serif;
@@ -435,12 +440,23 @@ section {
   border-bottom: 1px solid rgb(196, 166, 0);
 }
 
+.shop_item ul img {
+  width: 75%;
+  height: auto;
+  padding: 5%;
+  clip-path:ellipse(33% 50%);
+  margin-left: auto;
+  margin-right: auto;
+  align-self: center;
+  display: block;
+}
+
 .shop_rank_item_benefit li {
   font-size: 1.5rem;
   padding: 5px;
 }
 
-.shop_ranks_item_buy {
+.shop_items_buy {
   text-align: center;
   font-size: 1.5rem;
   font-family: _Bold, serif;
@@ -449,14 +465,14 @@ section {
   border-top: 1px solid rgb(196, 166, 0);
 }
 
-.shop_ranks_item_buy a {
+.shop_items_buy a {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
 }
 
-.shop_ranks_item_buy a span {
-  margin-left: 25px;
+.shop_items_buy a span {
+  margin: 0 15px;
 }
 
 .shop_item_current {
@@ -534,6 +550,21 @@ section {
   background-color: #FFF;
   color: rgb(196, 166, 0);
   transition: .5s;
+}
+
+.shop_gold_item {
+  width: 50%;
+  margin: 25px 0;
+  padding: 2%;
+  border-right: 1px solid black;
+}
+
+.shop_gold_item:first-of-type {
+  border-left: 1px solid black;
+}
+
+.shop_gold_item_benefit {
+  padding: 0;
 }
 
 /*** LOGIN ***/
