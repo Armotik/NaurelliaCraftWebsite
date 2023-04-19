@@ -9,12 +9,16 @@
 This project comes after one of my personal projects whose goal was to create from scratch a Minecraft Earth-RP server, so I decided to take the source code of the website created for this purpose to implement everything I learned about Symfony.
 
 In particular :
-- Twig templates
-- Entities
-- Controllers
-- Routes / Assets / Paths
-- A secure login page
-- Connection to a database
+- Twig templates | [Twig](https://twig.symfony.com/doc/3.x/)
+- Entities | [Entities](https://symfony.com/doc/current/doctrine.html#creating-an-entity-class)
+- Controllers | [Controllers](https://symfony.com/doc/current/controller.html)
+- Routes / Assets / Paths | [Routes](https://symfony.com/doc/current/routing.html)
+- A secure login page | [Security](https://symfony.com/doc/current/security.html)
+- Connection to a database | [Database](https://symfony.com/doc/current/doctrine.html)
+- CRUD (Create, Read, Update, Delete) system | [CRUD](https://symfony.com/doc/current/doctrine.html#creating-an-entity-class)
+- Fixtures (for testing) | [Fixtures](https://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html)
+- PHPDoc (for documentation) | [PHPDoc](https://www.phpdoc.org/docs/latest/index.html)
+- Api (for the shop items) | JSON format | [Api](https://symfony.com/doc/current/bundles/FOSRestBundle/index.html)
 
 All this in order to make this website even better
 
@@ -38,6 +42,7 @@ Date - Commit name
 15/04/2023 - Added 2 new entities : UserIG and InfractionsIG also updated the User entity to handle french date format and started update the SecurityController to handle the new entities
 17/04/2023 - Updated the SecurityController to handle the new entities, added CRUD controller for the new entities, the account page can now display player's infractions when its linked.Added PHPDoc for all the project.
 17/04/2023 - Modified the readme.md file
+19/04/2023 - Added a new Entity : ShopItem, added 2 new Controllers: ShopItemController and ApiController, added a new page to display the shop items and added a new page to display the shop items in JSON format
 ```
 
 ---
@@ -50,6 +55,7 @@ cd NaurelliaCraftWebsite
 
 cd NaurelliaCraftWebsite
 composer install
+npm install
 npm run build # or npm run watch
 ```
 
@@ -108,19 +114,23 @@ npm run build # or npm run watch
 │   ├── tile.png
 │   └── tile-wide.png
 ├── src
+│   ├── ApiResource (folder)
 │   ├── Controller
 │   │   ├── Admin
 │   │   │   ├── DashboardController.php
 │   │   │   ├── InfractionsCrudController.php
 │   │   │   ├── UserIGCrudController.php
 │   │   │   └── UserCrudController.php
+│   │   ├── ApiController.php
 │   │   ├── DefaultController.php
+│   │   ├── IngameShopController.php
 │   │   ├── SecurityController.php
 │   │   └── RegistrationController.php
 │   ├── DataFixtures
 │   │   └── AppFixtures.php
 │   ├── Entity
 │   │   ├── UserIG.php
+│   │   ├── ShopItem.php
 │   │   ├── InfractionIG.php
 │   │   └── User.php
 │   ├── Form
@@ -130,6 +140,7 @@ npm run build # or npm run watch
 │   │   └── RegistrationFormType.php
 │   ├── Repository
 │   │   ├── UserIGRepository.php
+│   │   ├── ShopItemRepository.php
 │   │   ├── InfractionIGRepository.php
 │   │   └── UserRepository.php
 │   ├── Security
@@ -139,12 +150,18 @@ npm run build # or npm run watch
 ├── templates
 │   ├── admin
 │   │   └── dashboard.html.twig
+│   ├── api
+│   │   └── index.html.twig
 │   ├── default
 │   │   ├── account.html.twig
 │   │   ├── index.html.twig
 │   │   ├── play.html.twig
 │   │   ├── wiki_rules.html.twig
 │   │   └── contact.html.twig
+│   ├── ingame_shop
+│   │   ├── buy.html.twig
+│   │   ├── index.html.twig
+│   │   └── item.html.twig
 │   ├── registration
 │   │   ├── confirmation_email.html.twig
 │   │   └── register.html.twig
@@ -154,6 +171,7 @@ npm run build # or npm run watch
 ├── var (folder)
 ├── vendor (folder)
 ├── .env
+├── .env.local
 ├── .gitignore
 ├── composer.json
 ├── composer.lock
@@ -214,6 +232,8 @@ This folder contains the source files of the project (Symfony).
     - UserIGCrudController.php : Contains the user IG crud controller of the project
     - UserCrudController.php : Contains the user crud controller of the project 
   - SecurityController.php : Contains the security controller of the project
+  - ApiController.php : Contains the api controller of the project
+  - IngameShopController.php : Contains the ingame shop controller of the project
   - RegistrationController.php : Contains the registration controller of the project
   - DefaultController.php : Contains the default controller of the project
 - DataFixtures : Contains the data fixtures of the project
@@ -221,6 +241,7 @@ This folder contains the source files of the project (Symfony).
 - Entity : Contains the entities of the project*
     - User.php : Contains the user entity of the project
     - UserIG.php : Contains the user IG (Minecraft) entity of the project
+    - ShopItem.php : Contains the shop item entity of the project
     - InfractionIG.php : Contains the infraction IG entity for the user IG entity of the project
 - Form : Contains the forms of the project
   - ContactType.php : Contains the contact form of the project
@@ -229,6 +250,7 @@ This folder contains the source files of the project (Symfony).
   - RegistrationFormType.php : Contains the registration form of the project
 - Repository : Contains the repositories of the project
     - UserRepository.php : Contains the user repository of the project
+    - ShopItemRepository.php : Contains the shop item repository of the project
     - UserIGRepository.php : Contains the user IG repository of the project
     - InfractionIGRepository.php : Contains the infraction IG repository of the project
 - Security : Contains the security files of the project
@@ -248,6 +270,12 @@ This folder contains the templates files of the project (Twig).
   - account.html.twig : Contains the account template of the project
 - admin : Contains the admin templates of the project
   - dashboard.html.twig : Contains the dashboard template of the project
+- api : Contains the api templates of the project
+  - index.html.twig : Contains the index template of the project
+- ingame_shop : Contains the ingame shop templates of the project
+    - buy.html.twig : Contains the buy template of the project
+    - index.html.twig : Contains the index template of the project
+    - item.html.twig : Contains the item template of the project
 - registration : Contains the registration templates of the project
     - register.html.twig : Contains the register template of the project
     - confirmation_email.html.twig : Contains the confirmation email template of the project
@@ -267,6 +295,10 @@ This folder contains the vendor files of the project (Symfony, Twig, etc.).
 
 This file contains the environment variables of the project (database, etc.).
 
+### .env.local
+
+This file contains the environment variables of the project (database, etc.).
+
 ---
 
 ### <ins>Authors : </ins>
@@ -277,6 +309,6 @@ This file contains the environment variables of the project (database, etc.).
 
 https://github.com/Armotik/NaurelliaCraftWebsite
 
-Copyright (c) 2021 Armotik - All rights reserved - Last update : 17/04/2023
+Copyright (c) 2021 Armotik - All rights reserved - Last update : 19/04/2023
 
 La Rochelle Université - France

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}| SHOP{% endblock %}
+
+{% block main %}
+
+    <main>
+        <section id="shop_desc">
+            <h2 class="underline">NaurelliaCraft Shop</h2>
+
+            <p>
+                Welcome to our online store, here you can buy ranks to get in-game benefits, gold, which is the premium
+                currency of the server, cosmetics and supply drops!
+            </p>
+        </section>
+
+        <section id="shop_ranks">
+
+            <h2>RANKS</h2>
+
+            <ul class="shop_ranks_items">
+
+                {% for item in shopItems %}
+
+                    {% if item.reference starts with 'NC_RK' %}
+
+                        <li class="shop_ranks_item">
+                            <h4>{{ item.designation }}</h4>
+                            <ul class="shop_rank_item_benefit">
+
+                                    {% for advantage in item.advantages %}
+
+                                        <li>{{ advantage }}</li>
+
+                                    {% endfor %}
+                            </ul>
+
+                            <div class="shop_ranks_item_buy">
+                                <a href="{{ path('app_ingame_shop_item', {'id': item.id}) }}"><i
+                                            class="fas fa-shopping-cart"></i><span>Buy</span></a>
+                            </div>
+                        </li>
+
+                    {% endif %}
+
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+
+{% endblock %}
+
+

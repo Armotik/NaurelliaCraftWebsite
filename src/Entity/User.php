@@ -65,6 +65,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $date = new DateTimeImmutable();
         $date->setTimezone(new \DateTimeZone('Europe/Paris'));
         $this->createdAt = $date;
+        $this->setRoles(['ROLE_USER']);
     }
 
     /**

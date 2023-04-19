@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}| {{ shopItem.designation }}{% endblock %}
+
+{% block main %}
+
+    <main>
+
+        <section id="shop_desc" class="shop_item_current">
+            <h2 class="underline">NaurelliaCraft Shop | {{ shopItem.designation }}</h2>
+
+            <p>
+                Here you can have details about the product you want to buy as well as a place to pay safely.
+            </p>
+        </section>
+
+        <section id="shop_item">
+
+            <h3>{{ shopItem.designation }}</h3>
+
+            <ul class="shop_item_current_table">
+                <li>
+                    <h4>Product Name</h4>
+                    <p>{{ shopItem.designation }}</p>
+                </li>
+
+                <li>
+                    <h4>Product Price</h4>
+                    <p>{{ shopItem.price }} €</p>
+                </li>
+
+                <li>
+                    <h4>Product Description</h4>
+                    <p>{{ shopItem.description }}</p>
+                </li>
+            </ul>
+
+        </section>
+
+        <section class="shop_item_buy">
+
+            <h3>Buy this product</h3>
+
+            <form action="{{ path('app_ingame_shop_item_buy', {'id': shopItem.id}) }}" method="post">
+                <input type="submit" value="Buy">
+            </form>
+
+        </section>
+
+    </main>
+
+{% endblock %}
+

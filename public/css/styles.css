@@ -59,7 +59,7 @@ ul {
 
 .underline {
   text-decoration: underline;
-  text-underline-offset: .5rem;
+  text-underline-offset: 1rem;
 }
 
 .code {
@@ -387,56 +387,153 @@ section {
 }
 
 /*** SHOP ***/
-#shop h2 {
-  text-align: center;
-  background: -webkit-linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(186, 157, 0, 1) 50%, rgba(1, 1, 15, 1) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+#shop_desc p {
+  padding: 5%;
+  font-size: 1.5rem;
+  border-bottom: 1px solid black;
 }
 
-#shop-opt {
+#shop_desc h2 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+#shop_ranks h2 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.shop_ranks_items {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 2% 0;
+  width: 100%;
   border-bottom: 1px solid rgb(196, 166, 0);
+}
+
+.shop_ranks_item {
+  width: 25%;
+  border-left: 1px solid black;
+}
+
+.shop_ranks_item:first-of-type {
+  border-left: none;
+}
+
+.shop_ranks_item:hover {
+  background-color: #FFF;
+  transition: .5s;
+}
+
+.shop_ranks_item h4 {
+  text-align: center;
+  font-size: 2rem;
+  font-family: _Bold, serif;
+  margin: 25px;
+  border-bottom: 1px solid rgb(196, 166, 0);
+}
+
+.shop_rank_item_benefit li {
+  font-size: 1.5rem;
+  padding: 5px;
+}
+
+.shop_ranks_item_buy {
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: _Bold, serif;
+  margin: 25px;
+  padding: 25px;
+  border-top: 1px solid rgb(196, 166, 0);
+}
+
+.shop_ranks_item_buy a {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.shop_ranks_item_buy a span {
+  margin-left: 25px;
+}
+
+.shop_item_current {
+  text-align: center;
+}
+
+.shop_item_current_table {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.shop_item_current_table li {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 5px;
+  width: 100%;
+  border-bottom: 1px solid rgb(196, 166, 0);
+}
+
+.shop_item_current_table li:last-of-type {
+  flex-direction: column;
+}
+
+.shop_item_current_table li:last-of-type h4 {
+  text-align: center;
+}
+
+.shop_item_current_table li:last-of-type p {
+  line-height: 1.5em;
+  word-spacing: .3em;
+}
+
+#shop_item {
+  padding-top: 0;
+}
+
+#shop_item h3 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-family: _Bold, serif;
+  margin: 25px;
+}
+
+.shop_item_buy {
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: _Bold, serif;
+  padding: 25px;
+  border-top: 1px solid black;
   width: 50%;
   margin-left: auto;
   margin-right: auto;
 }
 
-#shop-opt ul {
-  display: flex;
-  justify-content: space-around;
-  padding: 5%;
+.shop_item_buy h3 {
+  font-size: 2rem;
+  font-family: _Bold, serif;
+  margin-bottom: 25px;
 }
 
-#shop-opt a {
-  font-size: 1.5rem;
-  position: relative;
-  transition: transform 0.4s;
-  display: block;
-}
-
-#shop-opt a::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 100%;
-}
-
-#shop-opt a:hover {
-  color: rgb(196, 166, 0);
-  transform: translateY(-100%);
-}
-
-#shop-opt li {
-  overflow: hidden;
-}
-
-#currency {
-  font-family: "Font Awesome 6 Free", serif;
-  background-color: #f3f3f3;
+.shop_item_buy form input[type=submit] {
+  background-color: rgb(196, 166, 0);
+  color: #FFF;
+  padding: 15px 75px;
+  border: 1px solid rgb(196, 166, 0);
   border-radius: 8px;
+  cursor: pointer;
 }
 
-#currency:only-child {
-  font-family: _Regular, FontAwesome, serif;
+.shop_item_buy form input[type=submit]:hover {
+  background-color: #FFF;
+  color: rgb(196, 166, 0);
+  transition: .5s;
 }
 
 /*** LOGIN ***/

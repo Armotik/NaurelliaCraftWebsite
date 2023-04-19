@@ -32,14 +32,14 @@ class UserIG
     #[ORM\Column]
     private ?bool $isOnline = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $ranks = [];
-
     #[ORM\Column]
     private ?bool $isOp = null;
 
     #[ORM\OneToMany(mappedBy: 'targetUUID', targetEntity: Infractions::class)]
     private Collection $infractions;
+
+    #[ORM\ManyToMany(targetEntity: ShopItem::class, inversedBy: 'userIGs')]
+    private Collection $ranks;
 
     /**
      * UserIG constructor.
@@ -57,6 +57,7 @@ class UserIG
         $this->isOp = false;
 
         $this->infractions = new ArrayCollection();
+        $this->ranks = new ArrayCollection();
     }
 
     /**
@@ -174,27 +175,6 @@ class UserIG
     }
 
     /**
-     * Get the value of ranks
-     * @return array The ranks
-     */
-    public function getRanks(): array
-    {
-        return $this->ranks;
-    }
-
-    /**
-     * Set the value of ranks
-     * @param array $ranks The ranks
-     * @return self The UserIG
-     */
-    public function setRanks(array $ranks): self
-    {
-        $this->ranks = $ranks;
-
-        return $this;
-    }
-
-    /**
      * Get the value of isOp
      * @return bool|null The isOp value
      */
@@ -252,6 +232,30 @@ class UserIG
                 $infraction->setTargetUUID(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ShopItem>
+     */
+    public function getRanks(): Collection
+    {
+        return $this->ranks;
+    }
+
+    public function addRank(ShopItem $rank): self
+    {
+        if (!$this->ranks->contains($rank)) {
+            $this->ranks->add($rank);
+        }
+
+        return $this;
+    }
+
+    public function removeRank(ShopItem $rank): self
+    {
+        $this->ranks->removeElement($rank);
 
         return $this;
     }
