@@ -61,8 +61,15 @@ class DefaultController extends AbstractController
 
         // If form is submitted and valid
         if ($form->isSubmitted() && $form->isValid()) :
-            $this->sendEmail($form->getData(),$mailer);
-            return $this->redirect($request->getUri());
+
+            try {
+
+                $this->sendEmail($form->getData(),$mailer);
+                return $this->redirect($request->getUri());
+            } catch (TransportExceptionInterface $e) {
+                $this->addFlash('error', 'An error occurred while sending your message. Please try again later.');
+            }
+
         endif;
 
         // Render template
@@ -78,14 +85,14 @@ class DefaultController extends AbstractController
      */
     private function sendEmail($data, MailerInterface $mailer){
         $email = new Email();
-        $email->from($data["email"])
-            ->to("support@naurellia.com")
-            ->subject($data["name"]."  | website form")
+        $email->from("contact@naurellia.com")
+            ->to("contact@naurellia.com")
+            ->subject($data["username"]."  | website form")
             ->text($data["message"]);
         $mailer->send($email);
 
         $email2 = new Email();
-        $email2->from($data["email"])
+        $email2->from("contact@naurellia.com")
             ->to($data["email"])
             ->subject("NaurelliaCraft | Do not reply !")
             ->text("Successfully sent your message : \n".$data["message"]);

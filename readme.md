@@ -44,6 +44,7 @@ Date - Commit name
 17/04/2023 - Modified the readme.md file
 19/04/2023 - Added a new Entity : ShopItem, added 2 new Controllers: ShopItemController and ApiController, added a new page to display the shop items and added a new page to display the shop items in JSON format
 20/04/2023 - Update the Shop Page by adding new proctucts, added CRUD controller for the ShopItem entity and resolved the bugs due to the modification on the old entities in their CRUD controllers (UserIG, InfractionsIG)
+20/04/2023 - Started to implement mail sending system (not working yet, only working for verified emails in Amazon SES)
 ```
 
 ---
@@ -183,23 +184,23 @@ npm run build # or npm run watch
 └── symfony.lock
 ```
 
-### assets
+### <ins> assets </in>
 
 This folder contains the assets files of the project.
 
-### bin
+### <ins> bin </ins>
 
 This folder contains the console.php file which is used to launch the Symfony CLI.
 
-### config
+### <ins> config </ins>
 
 This folder contains the configuration files of the project (routes, services, etc.).
 
-### migration
+### <ins> migration </ins>
 
 This folder contains the migration files of the project (database).
 
-### public
+### <ins> public </ins>
 
 This folder contains the public files of the project. It's a Boilerplate from HTML5UP (https://html5up.net/) and I modified it to make it work with Symfony and Twig.
 
@@ -223,7 +224,7 @@ This folder contains the public files of the project. It's a Boilerplate from HT
 - tile.png : Contains the tile of the project.
 - tile-wide.png : Contains the tile of the project.
 
-### src
+### <ins> src </ins>
 
 This folder contains the source files of the project (Symfony).
 
@@ -261,7 +262,7 @@ This folder contains the source files of the project (Symfony).
     - LoginFormAuthenticator.php : Contains the login authenticator of the project
 - Kernel.php : Contains the kernel of the project
 
-### templates
+### <ins> templates </ins>
 
 This folder contains the templates files of the project (Twig).
 
@@ -286,25 +287,21 @@ This folder contains the templates files of the project (Twig).
     - login.html.twig : Contains the login template of the project
 - base.html.twig : Contains the base template of the project
 
-### var
+### <ins> var </ins>
 
 This folder contains the var files of the project (cache, logs, sessions, etc.).
 
-### vendor
+### <ins> vendor </ins>
 
 This folder contains the vendor files of the project (Symfony, Twig, etc.).
 
-### .env
-
-This file contains the environment variables of the project (database, etc.).
-
-### .env.local
+### <ins> .env </ins>
 
 This file contains the environment variables of the project (database, etc.).
 
 ---
 
-### <ins>Authors : </ins>
+### <ins> <ins>Authors : </ins>
 
 - **Armotik** - *Initial work* - [Armotik] 
 
